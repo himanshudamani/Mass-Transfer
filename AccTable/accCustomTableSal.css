@@ -1,0 +1,22 @@
+/*.slds-scrollable
+{
+    height: 12rem;
+    width: 100%;
+}*/
+
+.slds-form-element__control {
+    padding-left : 10px;
+    max-width : 550px;
+}
+
+.textClass{
+    border-style: groove;
+    text-align: center;
+    font-weight: bold;
+    margin: auto;
+    font-style: italic
+}
+.slds-scrollable_y
+{
+    height : 185px;
+}

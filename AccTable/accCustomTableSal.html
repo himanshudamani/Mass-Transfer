@@ -1,0 +1,55 @@
+<template> 
+    <template if:true={noRecords}>
+        <p class="textClass">No records found</p>
+    </template>
+
+    <template if:false={noRecords}>
+        <lightning-card> 
+            <div class="slds-scrollable_y">
+                <p class="slds-p-horizontal_small"> 
+                    <template if:false={showLoadingMessage}>
+                        <lightning-datatable data={accounts} 
+                                            columns={columns}
+                                            key-field="Id" 
+                                            onrowselection={prepareSelectedRows}
+                                            sorted-by={sortBy}
+                                            sorted-direction={sortDirection}
+                                            onsort={doSorting}
+                                            data-id="datatable"
+                                            selected-rows={selectedRows}>
+                        </lightning-datatable>  
+                        <template if:false={isLoaded}>
+                            <lightning-spinner
+                                alternative-text="Transferring..." variant="brand" data-text="Transferring record(s)">
+                            </lightning-spinner>
+                        </template>
+                    </template>    
+                </p>   
+            </div>
+            <div slot="footer" class="button-container">
+                <!--  Pagination Buttons Start -->
+                <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread" style="padding-top: 0.5em;">
+                    <div class="slds-align_absolute-center">
+                        <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={previousHandler}
+                            disabled={isPreviousDisable}>
+                        </lightning-button>
+                        <span class="slds-badge slds-badge_lightest" style="margin-right: 10px;margin-left: 10px;">
+                            
+                            Page {page} of {totalPage} 
+                        </span>
+                        <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" onclick={nextHandler} disabled={isNextDisable}>
+                        </lightning-button>
+                    </div>
+                </div>
+                <!--  Pagination Buttons End -->
+                <div style="font-size: 15px; color:gray; margin-top: 10px;">
+                    <p>Child account ownership follows parent account ownership change.</p>
+                </div>
+                <br/>
+
+                <lightning-button  label="Transfer Records" variant="brand" onclick={updateSelectedRcrds} disabled={recordSelected}>
+                </lightning-button>
+            </div>
+        </lightning-card>
+    </template>
+</template>

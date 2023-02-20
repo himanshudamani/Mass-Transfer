@@ -1,0 +1,27 @@
+.slds-scrollable
+{
+    height: 12rem;
+    width: 100%;
+}
+
+
+.slds-form-element__control {
+    padding-left : 10px;
+    max-width : 550px;
+}
+
+.textClass2{
+    color: red;
+    text-align: center;
+    font-style: italic
+}
+
+.textClass{
+    border-style: groove;
+    text-align: center;
+    font-weight: bold;
+    margin: auto;
+    font-style: italic;
+    padding: 80px;
+    margin-bottom: 100px;
+}

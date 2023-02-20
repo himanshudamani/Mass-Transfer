@@ -1,0 +1,23 @@
+.slds-p-top_none
+{
+   max-width : 1000px;
+}
+
+/*.slds-pill_container  {
+    display: grid;
+    width: auto;
+    height: 2.1rem; 
+    
+}*/
+/*.pillSize {
+    font-size: 15px;
+    display: grid;
+    width: auto;
+    height: 2.1rem; 
+   
+
+}*/
+.pillSize {
+    font-size: 15px;
+     display: grid;
+      max-width:350px;}

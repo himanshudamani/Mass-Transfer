@@ -1,0 +1,84 @@
+<template>
+  <!--Modal section start-->
+  <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+    <div class="slds-modal__container">
+      <!-- Modal header start -->
+      <header class="slds-modal__header">
+        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={confirmClose}>
+          <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small" ></lightning-icon>
+          <span class="slds-assistive-text">Close</span>
+        </button>
+        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Mass Transfer</h2>
+      </header>
+      <!-- Modal body start -->
+      <div class="slds-modal__content slds-p-around_small" id="modal-content-id-1">
+        <div class="middleBox">
+          <div class="slds-box">
+            <div class="slds-grid slds-gutters">
+              <div class="slds-col">
+                <span> 
+                  <lightning-layout-item >
+                    <c-sal-_-lookup-pill label="Transfer From"  onlookupselectedtransferfrom={handleTransferFrom} onremovepill={handleRemovePillTransferFrom} another-pill-user={transferTo}></c-sal-_-lookup-pill>
+                  </lightning-layout-item> 
+                </span>
+              </div>
+              <div class="slds-col">
+                <span>
+                  <lightning-layout-item>
+                    <c-sal-_-lookup-pill label="Transfer To" onlookupselectedtransferto={handleTransferTo} onremovepill={handleRemovePillTransferTo} another-pill-user={userId}></c-sal-_-lookup-pill>
+                  </lightning-layout-item></span>
+                </div>
+              </div>
+              <br/>
+             
+              <h2 class="header"><b>Records List</b></h2>
+              <div class="slds-box">
+                <div class="slds-grid ">
+                  <div class="slds-col">
+                    <lightning-input class="acc" type="checkbox" label="Accounts"  name="account" onchange={handleCheckbox} value="Account" disabled={disableCheckbox} checked={showAccounts}></lightning-input>
+                    <lightning-input type="checkbox" label="Leads"  name="lead" onchange={handleCheckbox} value="Lead" disabled={disableCheckbox} checked={showLeads}></lightning-input>
+                    <lightning-input type="checkbox" label="Contacts" name="contact" onchange={handleCheckbox} value="Contact" disabled={disableCheckbox} checked={showContacts}></lightning-input>
+                    <lightning-input type="checkbox" label="Opportunities" name="opportunity" onchange={handleCheckbox} value="Opportunity" disabled={disableCheckbox} checked={showOpp}></lightning-input>
+                  </div>
+                  <div class="slds-col">
+                  </div>
+                  <div class="slds-col">
+                    <lightning-input type="checkbox" label="Account Team Members" name="AccountTeamMember" onchange={handleCheckbox} value="AccountTeamMember" disabled={disableCheckbox} checked={showATM}></lightning-input>
+                    <lightning-input type="checkbox" label="Opportunity Team Members" name="OpportunityTeamMember" onchange={handleCheckbox} value="OpportunityTeamMember" disabled={disableCheckbox} checked={showOTM}></lightning-input>
+                    <lightning-input type="checkbox" label="Account Approval Processes" name="ApprovalProcess" onchange={handleCheckbox} value="ApprovalProcess" disabled={disableCheckbox} checked={showAP}></lightning-input>
+                  </div>
+                </div>
+              </div>
+              <br/>
+              <br/>
+              <div class="slds-align_absolute-center" slot="footer">
+                <lightning-button class="btnClass" label="Search" variant="brand" onclick={handleSearchButton} disabled={disableSearchBtn}>
+                </lightning-button> 
+              </div>
+              <br/>
+
+              <template if:true={tabBool}>
+                <lightning-tabset selected-tab-id={tab} variant="scoped">
+                  <template for:each={tabs} for:item='tab'>
+                    <template if:true={tab.visible}>
+                      <lightning-tab key={tab.id} label={tab.label} value={tab.value} id={tab.id}>
+                        <c-sal-_-generic-table-cmp object-name={tab.objectName} user-id={userId} transfer-to={transferTo} columns={tab.columns}></c-sal-_-generic-table-cmp>
+                      </lightning-tab>
+                    </template>
+                  </template>
+
+                  <template if:true={searchApproval}>
+                    <lightning-tab label="Approval Processes" value="ApprovalProcess" id="ApprovalProcess">
+                      <c-sal-_-acc-approval-table  user-id='{userId}' transfer-to='{transferTo}' transfer-from='{userId}' user-name={transferFrom} ></c-sal-_-acc-approval-table>
+                    </lightning-tab>
+                  </template>
+
+                </lightning-tabset>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

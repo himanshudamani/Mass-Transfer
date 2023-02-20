@@ -1,0 +1,24 @@
+.slds-form-element__control {
+    padding-left : 10px;
+    max-width : 550px;
+}
+
+.textClass{
+    border-style: groove;
+    text-align: center;
+    font-weight: bold;
+    margin: auto;
+    font-style: italic;
+    padding: 80px;
+    margin-bottom: 100px;
+}
+.slds-scrollable_y
+{
+    height : 185px;
+}
+.slds-table_sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
+}
